@@ -1,5 +1,5 @@
 const Sketch = require('../models/Sketch');
-const SketchComment = require('../models/SketchComment');
+const SketchComment = require('../models/sketchComment');
 const multer = require('multer');
 const path = require('path');
 
