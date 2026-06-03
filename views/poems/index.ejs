@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Poems</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+    <a href="/" class="nav-logo-wrap">
+  <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+  <span class="nav-logo-text">Whispered Ink</span>
+</a>
+    <span class="nav-tagline">शब्द, रेषा आणि भावना</span>
+  </div>
+    <a href="/poems">All Poems</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">All Poems</h1>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <a href="/poems" class="filter-btn <%= !filter.language ? 'active' : '' %>">All</a>
+      <a href="/poems?language=Marathi" class="filter-btn <%= filter.language === 'Marathi' ? 'active' : '' %>">Marathi</a>
+      <a href="/poems?language=Hindi" class="filter-btn <%= filter.language === 'Hindi' ? 'active' : '' %>">Hindi</a>
+      <a href="/poems?language=English" class="filter-btn <%= filter.language === 'English' ? 'active' : '' %>">English</a>
+    </div>
+
+    <!-- Poems Grid -->
+    <div class="poems-grid">
+      <% if (poems.length === 0) { %>
+        <p>No poems yet.</p>
+      <% } else { %>
+        <% poems.forEach(poem => { %>
+          <a href="/poems/<%= poem.id %>" class="poem-card">
+            <p class="pc-lang"><%= poem.language %></p>
+            <h2 class="pc-title"><%= poem.title %></h2>
+            <p class="pc-excerpt"><%= poem.body.substring(0, 80) %>...</p>
+            <div class="pc-foot">
+              <span class="pc-tag"><%= poem.mood %></span>
+              <span class="pc-stats">👁 <%= poem.views %> · ❤️ <%= poem.likes %></span>
+            </div>
+          </a>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

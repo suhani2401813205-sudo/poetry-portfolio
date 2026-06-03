@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Sketches</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <p class="admin-logo">Whispered Ink</p>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard" class="admin-nav-link">Dashboard</a>
+        <a href="/admin/poems" class="admin-nav-link">Poems</a>
+        <a href="/admin/sketches" class="admin-nav-link active">Sketches</a>
+        <a href="/admin/logout" class="admin-nav-link logout">Logout</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h1 class="admin-page-title">Sketches</h1>
+      </div>
+
+      <!-- Upload Form -->
+      <div class="admin-form-card">
+        <h2 class="form-heading">Upload new sketch</h2>
+        <form action="/admin/sketches" method="POST" enctype="multipart/form-data" class="admin-form">
+          <div class="form-row">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Stillness" required />
+          </div>
+          <div class="form-2col">
+            <div class="form-row">
+              <label>Category</label>
+              <select name="category" required>
+                <option value="Mandala Art">Mandala Art</option>
+                <option value="Pencil Sketch">Pencil Sketch</option>
+                <option value="Ink Art">Ink Art</option>
+                <option value="Charcoal">Charcoal</option>
+                <option value="Digital Art">Digital Art</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Medium</label>
+              <input type="text" name="medium" placeholder="Pencil, Ink, Charcoal..." />
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Image</label>
+            <input type="file" name="image" accept="image/*" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Upload sketch</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sketches List -->
+      <div class="admin-table-wrap">
+        <h2 class="form-heading">All sketches</h2>
+        <% if (sketches.length === 0) { %>
+          <p class="no-data">No sketches yet. Upload your first one above!</p>
+        <% } else { %>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Medium</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sketches.forEach(sketch => { %>
+                <tr>
+                  <td><img src="<%= sketch.image_url %>" style="width:50px;height:50px;object-fit:cover;border-radius:6px;" /></td>
+                  <td><%= sketch.title %></td>
+                  <td><span class="lang-badge"><%= sketch.category %></span></td>
+                  <td><%= sketch.medium %></td>
+                  <td>
+                    <form action="/admin/sketches/<%= sketch.id %>?_method=DELETE" method="POST" style="display:inline;">
+                      <button type="submit" class="btn-delete" onclick="return confirm('Delete this sketch?')">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

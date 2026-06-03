@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parichay — Whispered Ink</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+      <a href="/" class="nav-logo-wrap">
+  <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+  <span class="nav-logo-text">Whispered Ink</span>
+</a>
+      
+    </div>
+    <div class="nav-links">
+      <a href="/poems">Kavita</a>
+      <a href="/sketches">Rekhatan</a>
+      <a href="/about">Parichay</a>
+    </div>
+  </nav>
+
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <p class="about-eyebrow">— माझ्याबद्दल —</p>
+      <h1 class="about-hero-name">Suhani </h1>
+      <p class="about-hero-sub">कवी · चित्रकार · अभियंता</p>
+      <p class="about-hero-desc">"शब्दांत जे सांगता येत नाही, ते रेषांत उमटतं —<br>आणि जे रेषांत नाही, ते मनात राहतं."</p>
+    </div>
+  </div>
+
+  <div class="about-page-wrap">
+
+    <!-- Left col -->
+    <div class="about-page-left">
+
+      <div class="about-block">
+        <p class="about-block-label">Who I am</p>
+        <p class="about-block-text">
+          मी <strong>Suhani Joyashi</strong> — महाराष्ट्रातील एक
+          Computer Engineering चा विद्यार्थी,
+          जो कोडच्या ओळींमध्येही कविता शोधतो.
+        </p>
+        <p class="about-block-text">
+          By day I debug code. By night I write poems that
+          no one asked for — in Marathi, in Hindi, sometimes
+          in the silence between two words.
+        </p>
+        <p class="about-block-text">
+          माझ्यासाठी लिखाण म्हणजे फक्त शब्द नाहीत —
+          ते एक श्वास आहे. एक अनुभव आहे.
+          जो कागदावर उतरला की, मन हलकं होतं.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <p class="about-block-label">The sketches</p>
+        <p class="about-block-text">
+          जेव्हा शब्द थकतात, तेव्हा पेन्सिल बोलते.
+          Mandala काढताना मन शांत होतं —
+          ते एक meditation आहे माझ्यासाठी.
+        </p>
+        <p class="about-block-text">
+          Each sketch is a conversation I had with myself
+          on a quiet afternoon — no rules, no audience,
+          just lines finding their way.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <p class="about-block-label">This space</p>
+        <p class="about-block-text">
+          हे website म्हणजे माझं एक छोटंसं घर —
+          जिथे माझ्या कविता, माझी चित्रं आणि
+          माझे विचार एकत्र राहतात.
+        </p>
+        <p class="about-block-text">
+          Built with Node.js, Express & MySQL —
+          because a CS student's portfolio
+          should speak both languages. 💻🖋️
+        </p>
+      </div>
+
+      <!-- Details -->
+      <div class="about-details-card">
+        <div class="about-detail-row">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>
+          <span class="about-detail-label">From</span>
+          <span>Your Ratnagiri, Maharashtra</span>
+        </div>
+        <div class="about-detail-row">
+          <i class="ti ti-school" aria-hidden="true"></i>
+          <span class="about-detail-label">Studying</span>
+          <span>Computer Engineering · 3rd Year</span>
+        </div>
+        <div class="about-detail-row">
+          <i class="ti ti-college" aria-hidden="true"></i>
+          <span class="about-detail-label">College</span>
+          <span>Vidyavardhini's College of Engineering and Technology</span>
+        </div>
+        <div class="about-detail-row">
+          <i class="ti ti-language" aria-hidden="true"></i>
+          <span class="about-detail-label">Writes in</span>
+          <span>मराठी · हिन्दी · English</span>
+        </div>
+        <div class="about-detail-row">
+          <i class="ti ti-heart" aria-hidden="true"></i>
+          <span class="about-detail-label">Loves</span>
+          <span>Poetry · Mandala · Music · Rain</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right col -->
+    <div class="about-page-right">
+
+      <div class="about-stats-card">
+        <p class="about-block-label">एका नजरेत</p>
+        <div class="about-stats-grid">
+          <div class="about-stat">
+            <span class="about-stat-num"><%= poemCount %></span>
+            <span class="about-stat-label">कविता</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num"><%= sketchCount %></span>
+            <span class="about-stat-label">रेखाटने</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num"><%= totalLikes %></span>
+            <span class="about-stat-label">Likes</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">2+</span>
+            <span class="about-stat-label">भाषा</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-quote-card">
+        <i class="ti ti-quote" aria-hidden="true"></i>
+        <p class="about-big-quote">
+          "मी अपूर्ण आहे —<br>
+          पण माझ्या अपूर्णतेतच<br>
+          माझी कविता आहे."
+        </p>
+        <span class="about-quote-attr">— Suhani</span>
+      </div>
+
+      <div class="about-links-card">
+        <p class="about-block-label">Explore</p>
+        <a href="/poems" class="about-link-btn">
+          <i class="ti ti-feather" aria-hidden="true"></i>
+          सर्व कविता वाचा
+        </a>
+        <a href="/sketches" class="about-link-btn">
+          <i class="ti ti-brush" aria-hidden="true"></i>
+          रेखाटने पाहा
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-left">Whispered Ink</span>
+    <span class="footer-right">शब्द, रेषा आणि भावना</span>
+  </footer>
+
+</body>
+</html>

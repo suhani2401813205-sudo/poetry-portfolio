@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= sketch.title %> — Tumcha Aavaj</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo-wrap">
+  <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+  <span class="nav-logo-text">Whispered Ink</span>
+</a>
+      <a href="/poems">Poems</a>
+      <a href="/sketches">Sketches</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="sketch-detail">
+      <a href="/sketches" class="back-link">← Back to sketches</a>
+
+      <div class="sketch-detail-wrap">
+
+        <!-- Image -->
+        <div class="sketch-detail-img">
+          <img src="<%= sketch.image_url %>" alt="<%= sketch.title %>" />
+        </div>
+
+        <!-- Info -->
+        <div class="sketch-detail-info">
+          <p class="poem-lang"><%= sketch.category %></p>
+          <h1 class="poem-title"><%= sketch.title %></h1>
+          <p class="poem-date"><%= sketch.medium %> · <%= new Date(sketch.created_at).toDateString() %></p>
+
+          <<div class="poem-stats">
+  <span class="stat-item">
+    <i class="ti ti-eye" aria-hidden="true"></i>
+    <%= sketch.views %> views
+  </span>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments-section" id="comments">
+  <h2>
+    <i class="ti ti-message-circle" aria-hidden="true"></i>
+    Comments (<%= comments.length %>)
+  </h2>
+
+      <form action="/sketches/<%= sketch.id %>/comment" method="POST" class="comment-form">
+        <input type="text" name="name" placeholder="Your name" required />
+        <textarea name="message" placeholder="Write a comment..." required></textarea>
+        <button type="submit">Post comment</button>
+      </form>
+
+      <div class="comments-list">
+        <% if (comments.length === 0) { %>
+          <p class="no-comments">No comments yet. Be the first!</p>
+        <% } else { %>
+          <% comments.forEach(comment => { %>
+            <div class="comment-card">
+              <div class="comment-header">
+                <span class="comment-name"><%= comment.name %></span>
+                <span class="comment-date"><%= new Date(comment.created_at).toDateString() %></span>
+              </div>
+              <p class="comment-message"><%= comment.message %></p>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-left">Whispered Ink</span>
+    <span class="footer-right">शब्द, रेषा आणि भावना</span>
+  </footer>
+
+
+</body>
+</html>

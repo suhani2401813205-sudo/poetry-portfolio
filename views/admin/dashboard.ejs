@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <p class="admin-logo">Whispered Ink</p>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard" class="admin-nav-link active">Dashboard</a>
+        <a href="/admin/poems" class="admin-nav-link">Poems</a>
+        <a href="/admin/sketches" class="admin-nav-link">Sketches</a>
+        <a href="/admin/logout" class="admin-nav-link logout">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h1 class="admin-page-title">Dashboard</h1>
+        <span class="admin-welcome">Welcome, <%= admin.username %></span>
+      </div>
+
+      <div class="admin-stats">
+        <div class="admin-stat-box">
+          <span class="stat-num"><%= poemCount %></span>
+          <span class="stat-label">Total Poems</span>
+        </div>
+        <div class="admin-stat-box">
+          <span class="stat-num"><%= sketchCount %></span>
+          <span class="stat-label">Sketches</span>
+        </div>
+        <div class="admin-stat-box">
+          <span class="stat-num"><%= commentCount %></span>
+          <span class="stat-label">Comments</span>
+        </div>
+      </div>
+
+      <div class="admin-quick">
+        <h2>Quick actions</h2>
+        <div class="quick-btns">
+          <a href="/admin/poems" class="btn-primary">Add new poem</a>
+          <a href="/admin/sketches" class="btn-ghost">Add new sketch</a>
+          <a href="/poems" class="btn-ghost">View public site</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

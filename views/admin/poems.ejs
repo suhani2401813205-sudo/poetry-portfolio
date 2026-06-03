@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Poems</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <p class="admin-logo">Whispered Ink</p>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard" class="admin-nav-link">Dashboard</a>
+        <a href="/admin/poems" class="admin-nav-link active">Poems</a>
+        <a href="/admin/sketches" class="admin-nav-link">Sketches</a>
+        <a href="/admin/logout" class="admin-nav-link logout">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h1 class="admin-page-title">Poems</h1>
+      </div>
+
+      <!-- Add Poem Form -->
+      <div class="admin-form-card">
+        <h2 class="form-heading">Add new poem</h2>
+        <form action="/admin/poems" method="POST" class="admin-form">
+
+          <div class="form-row">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="आभाळाशी गोष्ट" required />
+          </div>
+
+          <div class="form-2col">
+            <div class="form-row">
+              <label>Language</label>
+              <select name="language" required>
+                <option value="Marathi">Marathi</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Mood / Tag</label>
+              <input type="text" name="mood" placeholder="Nature, Love, Life..." />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Poem body</label>
+            <textarea name="body" rows="8" placeholder="Write your poem here..." required></textarea>
+          </div>
+
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" name="is_featured" value="1" />
+              Feature this poem on homepage
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Publish poem</button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Poems List -->
+      <div class="admin-table-wrap">
+        <h2 class="form-heading">All poems</h2>
+        <% if (poems.length === 0) { %>
+          <p class="no-data">No poems yet. Add your first poem above!</p>
+        <% } else { %>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Language</th>
+                <th>Mood</th>
+                <th>Views</th>
+                <th>Likes</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% poems.forEach(poem => { %>
+                <tr>
+                  <td><%= poem.title %></td>
+                  <td><span class="lang-badge"><%= poem.language %></span></td>
+                  <td><%= poem.mood %></td>
+                  <td>👁 <%= poem.views %></td>
+                  <td>❤️ <%= poem.likes %></td>
+                  <td><%= poem.is_featured ? '⭐ Yes' : 'No' %></td>
+                  <td>
+                    <form action="/admin/poems/<%= poem.id %>?_method=DELETE" method="POST" style="display:inline;">
+                      <button type="submit" class="btn-delete" onclick="return confirm('Delete this poem?')">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

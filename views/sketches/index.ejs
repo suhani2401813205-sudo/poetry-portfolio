@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sketches — Tumcha Aavaj</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+ <nav>
+    <div class="nav-brand">
+     <a href="/" class="nav-logo-wrap">
+  <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+  <span class="nav-logo-text">Whispered Ink</span>
+</a>
+      <span class="nav-tagline">शब्द, रेषा आणि भावना</span>
+    </div>
+    <div class="nav-links">
+      <a href="/poems">Kavita</a>
+      <a href="/sketches">Rekhatan</a>
+      <a href="/about">Parichay</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1 class="page-title">Sketches</h1>
+    <p class="page-subtitle">Drawings, doodles and art — organized by style</p>
+
+    <% if (Object.keys(grouped).length === 0) { %>
+      <p class="no-data">No sketches yet.</p>
+    <% } else { %>
+      <% Object.keys(grouped).forEach(category => { %>
+        <div class="sketch-category">
+          <h2 class="category-title"><%= category %></h2>
+          <div class="sketches-grid">
+            <% grouped[category].forEach(sketch => { %>
+              <a href="/sketches/<%= sketch.id %>" class="sketch-item">
+                <div class="sketch-img-wrap">
+                  <img src="<%= sketch.image_url %>" alt="<%= sketch.title %>" />
+                </div>
+                <div class="sketch-info">
+                  <p class="sketch-name"><%= sketch.title %></p>
+                  <p class="sketch-medium"><%= sketch.medium %> · 👁 <%= sketch.views %></p>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+ <footer class="site-footer">
+    <span class="footer-left">Whispered Ink</span>
+    <span class="footer-right">शब्द, रेषा आणि भावना</span>
+  </footer>
+
+</body>
+</html>

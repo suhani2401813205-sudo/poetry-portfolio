@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= poem.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+    <a href="/" class="nav-logo-wrap">
+  <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+  <span class="nav-logo-text">Whispered Ink</span>
+</a>
+    <span class="nav-tagline">शब्द, रेषा आणि भावना</span>
+  </div>
+    <a href="/poems">All Poems</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="poem-detail">
+      <p class="poem-lang"><%= poem.language %> · <%= poem.mood %></p>
+      <h1 class="poem-title"><%= poem.title %></h1>
+      <p class="poem-date"><%= new Date(poem.created_at).toDateString() %></p>
+
+      <div class="poem-body">
+        <%= poem.body %>
+      </div>
+
+      <!-- Views & Likes -->
+<div class="poem-stats">
+  <span class="stat-item">
+    <i class="ti ti-eye" aria-hidden="true"></i>
+    <%= poem.views %> views
+  </span>
+
+  <form action="/poems/<%= poem.id %>/like" method="POST">
+    <button type="submit" class="like-btn">
+      <i class="ti ti-heart" aria-hidden="true"></i>
+      <%= poem.likes %> likes
+    </button>
+  </form>
+</div>
+
+    <!-- Comments Section -->
+    <div class="comments-section" id="comments">
+  <h2>
+    <i class="ti ti-message-circle" aria-hidden="true"></i>
+    Comments (<%= comments.length %>)
+  </h2>
+
+      <!-- Comment Form -->
+      <form action="/poems/<%= poem.id %>/comment" method="POST" class="comment-form">
+        <input type="text" name="name" placeholder="Your name" required />
+        <textarea name="message" placeholder="Write a comment..." required></textarea>
+        <button type="submit">Post comment</button>
+      </form>
+
+      <!-- Comments List -->
+      <div class="comments-list">
+        <% if (comments.length === 0) { %>
+          <p class="no-comments">No comments yet. Be the first!</p>
+        <% } else { %>
+          <% comments.forEach(comment => { %>
+            <div class="comment-card">
+              <div class="comment-header">
+                <span class="comment-name"><%= comment.name %></span>
+                <span class="comment-date"><%= new Date(comment.created_at).toDateString() %></span>
+              </div>
+              <p class="comment-message"><%= comment.message %></p>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

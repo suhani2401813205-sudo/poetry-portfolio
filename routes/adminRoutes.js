@@ -1,0 +1,20 @@
+const express = require('express');
+const router = express.Router();
+const adminController = require('../controllers/adminController');
+const sketchController = require('../controllers/sketchController');
+const auth = require('../middleware/authMiddleware');
+
+router.get('/login', adminController.getLogin);
+router.post('/login', adminController.postLogin);
+router.get('/logout', adminController.logout);
+
+router.get('/dashboard', auth, adminController.getDashboard);
+router.get('/poems', auth, adminController.getPoems);
+router.post('/poems', auth, adminController.createPoem);
+router.delete('/poems/:id', auth, adminController.deletePoem);
+
+router.get('/sketches', auth, sketchController.adminIndex);
+router.post('/sketches', auth, sketchController.upload.single('image'), sketchController.create);
+router.delete('/sketches/:id', auth, sketchController.delete);
+
+module.exports = router;
