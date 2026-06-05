@@ -22,6 +22,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+const fs = require('fs');
+const uploadDir = 'public/uploads';
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const poemRoutes = require('./routes/poemRoutes');
 app.use('/poems', poemRoutes);
