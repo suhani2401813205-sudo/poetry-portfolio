@@ -2,9 +2,16 @@ const express = require('express');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
+
+// Auto create uploads folder
+const uploadDir = path.join(__dirname, 'public/uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // View engine
 app.set('view engine', 'ejs');
@@ -22,37 +29,20 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-const fs = require('fs');
-const uploadDir = 'public/uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
 
+// Routes
 const poemRoutes = require('./routes/poemRoutes');
-app.use('/poems', poemRoutes);
 const adminRoutes = require('./routes/adminRoutes');
+const sketchRoutes = require('./routes/sketchRoutes');
+const aboutController = require('./controllers/aboutController');
+const homeController = require('./controllers/homeController');
 
 app.use('/poems', poemRoutes);
 app.use('/admin', adminRoutes);
-const sketchRoutes = require('./routes/sketchRoutes');
 app.use('/sketches', sketchRoutes);
-const aboutController = require('./controllers/aboutController');
 app.get('/about', aboutController.index);
-// app.use('/', poemRoutes);
-// app.use('/admin', adminRoutes);
+app.get('/', homeController.index);
 
-// Home route (temporary)
-app.get('/', async (req, res) => {
-  try {
-    const Poem = require('./models/Poem');
-    const featured = await Poem.getFeatured();
-    const poems = await Poem.getAll();
-    res.render('home', { featured, poems });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Something went wrong');
-  }
-});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
