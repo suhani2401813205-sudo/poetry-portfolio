@@ -30,18 +30,43 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// Models
+const Poem = require('./models/Poem');
+const Sketch = require('./models/Sketch');
+const { getPool } = require('./config/db');
+
 // Routes
 const poemRoutes = require('./routes/poemRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const sketchRoutes = require('./routes/sketchRoutes');
 const aboutController = require('./controllers/aboutController');
-const homeController = require('./controllers/homeController');
 
 app.use('/poems', poemRoutes);
 app.use('/admin', adminRoutes);
 app.use('/sketches', sketchRoutes);
 app.get('/about', aboutController.index);
-app.get('/', homeController.index);
+
+// Home route
+app.get('/', async (req, res) => {
+  try {
+    const featured = await Poem.getFeatured();
+    const recentPoems = await Poem.getRecent(6);
+    const db = await getPool();
+    const [poemCount] = await db.query('SELECT COUNT(*) as count FROM poems');
+    const [sketchCount] = await db.query('SELECT COUNT(*) as count FROM sketches');
+    const [totalLikes] = await db.query('SELECT SUM(likes) as total FROM poems');
+    res.render('home', {
+      featured,
+      recentPoems,
+      poemCount: poemCount[0].count,
+      sketchCount: sketchCount[0].count,
+      totalLikes: totalLikes[0].total || 0
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Something went wrong');
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
