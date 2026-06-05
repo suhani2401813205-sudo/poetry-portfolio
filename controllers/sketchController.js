@@ -1,19 +1,8 @@
 const Sketch = require('../models/Sketch');
 const SketchComment = require('../models/sketchComment');
-const multer = require('multer');
-const path = require('path');
+const { upload } = require('../config/cloudinary');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/uploads/');
-  },
-  filename: (req, file, cb) => {
-    const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, unique + path.extname(file.originalname));
-  }
-});
-
-exports.upload = multer({ storage });
+exports.upload = upload;
 
 exports.index = async (req, res) => {
   try {
@@ -61,7 +50,7 @@ exports.adminIndex = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    const image_url = '/uploads/' + req.file.filename;
+    const image_url = req.file.path; // cloudinary gives full URL here
     await Sketch.create({ ...req.body, image_url });
     res.redirect('/admin/sketches');
   } catch (err) {

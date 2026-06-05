@@ -1685,3 +1685,280 @@ nav a:first-child:hover {
   align-items: center;    /* vertical alignment */
   gap: 8px;               /* space between logo & text */
 }
+
+/* ================================
+   RESPONSIVE / MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .nav-tagline {
+    font-size: 9px;
+  }
+
+  /* HOME HERO */
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-left {
+    padding: 2rem 1.25rem;
+    border-right: none;
+    border-bottom: 0.5px solid #F5DEDE;
+    animation: fadeUp 0.6s ease;
+  }
+
+  .home-hero-right {
+    padding: 1.25rem;
+    animation: fadeUp 0.7s ease;
+  }
+
+  .hero-h1 {
+    font-size: 28px;
+  }
+
+  .hero-mini-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* CONTAINER */
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  /* POEMS GRID */
+  .poems-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* POEM DETAIL */
+  .poem-title {
+    font-size: 26px;
+  }
+
+  .poem-body {
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  /* SKETCHES */
+  .sketches-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sketch-detail-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  /* ABOUT PAGE */
+  .about-hero {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .about-hero-name {
+    font-size: 32px;
+  }
+
+  .about-hero-desc {
+    font-size: 14px;
+  }
+
+  .about-page-wrap {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0;
+    gap: 1.5rem;
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* HOME SECTION */
+  .home-section {
+    padding: 1.5rem 1rem;
+  }
+
+  /* ADMIN */
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-right: none;
+    border-bottom: 0.5px solid #F5DEDE;
+    overflow-x: auto;
+  }
+
+  .admin-logo {
+    padding: 0 1rem 0 0;
+    border-bottom: none;
+    border-right: 0.5px solid #F5DEDE;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .admin-nav-link {
+    padding: 6px 12px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .admin-nav-link.active {
+    border-left: none;
+    border-bottom: 2px solid #850E35;
+  }
+
+  .admin-nav-link:hover {
+    padding-left: 12px;
+  }
+
+  .admin-main {
+    padding: 1rem;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .stat-num {
+    font-size: 24px;
+  }
+
+  .form-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table {
+    font-size: 12px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 8px 8px;
+  }
+
+  /* QUICK BTNS */
+  .quick-btns {
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* ABOUT STRIP HOME */
+  .about-strip {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* LOGIN */
+  .login-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+  }
+
+  /* POEM STATS */
+  .poem-stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-h1 {
+    font-size: 24px;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .sketches-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    text-align: center;
+    width: 100%;
+  }
+
+  .about-hero-name {
+    font-size: 26px;
+  }
+
+  .poem-title {
+    font-size: 22px;
+  }
+
+  .poem-body {
+    font-size: 15px;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mini-stat {
+    padding: 0.5rem;
+  }
+
+  .ms-num {
+    font-size: 20px;
+  }
+}
