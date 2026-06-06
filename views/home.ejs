@@ -84,7 +84,10 @@
             <p class="pc-excerpt"><%= poem.body.substring(0, 80) %>...</p>
             <div class="pc-foot">
               <span class="pc-tag"><%= poem.mood %></span>
-              <span class="pc-stats">👁 <%= poem.views %> · ❤️ <%= poem.likes %></span>
+             <span class="pc-stats">
+  <i class="ti ti-eye" aria-hidden="true"></i> <%= poem.views %> · 
+  <i class="ti ti-heart" aria-hidden="true"></i> <%= poem.likes %>
+</span>
             </div>
           </a>
         <% }) %>
@@ -95,10 +98,16 @@
   <div class="home-section about-strip">
     <p class="about-quote">"जे शब्दांत मावत नाही, ते रेषांमध्ये उमटतं… आणि जे रेषांत हरवतं, ते कवितेत सापडतं."</p>
     <div class="about-right">
-      <p class="about-line">🗺 Maharashtra, India</p>
-      <p class="about-line">🎓 3rd year, Computer Engineering</p>
-      <p class="about-line">✍️ Writes in Marathi & Hindi</p>
-    </div>
+  <p class="about-line">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Maharashtra, India
+  </p>
+  <p class="about-line">
+    <i class="ti ti-school" aria-hidden="true"></i> 3rd year, Computer Engineering
+  </p>
+  <p class="about-line">
+    <i class="ti ti-feather" aria-hidden="true"></i> Writes in Marathi & Hindi
+  </p>
+</div>
   </div>
 
   <footer class="site-footer">
