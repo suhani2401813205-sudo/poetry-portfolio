@@ -59,6 +59,14 @@ const Poem = {
     const db = await getPool();
     await db.query('UPDATE poems SET likes = likes + 1 WHERE id = ?', [id]);
   },
+  getRecent: async (limit = 6) => {
+  const db = await getPool();
+  const [rows] = await db.query(
+    'SELECT * FROM poems ORDER BY created_at DESC LIMIT ?',
+    [limit]
+  );
+  return rows;
+},
 };
 
 module.exports = Poem;

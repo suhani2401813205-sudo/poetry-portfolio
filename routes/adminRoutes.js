@@ -14,7 +14,13 @@ router.post('/poems', auth, adminController.createPoem);
 router.delete('/poems/:id', auth, adminController.deletePoem);
 
 router.get('/sketches', auth, sketchController.adminIndex);
-router.post('/sketches', auth, sketchController.upload.single('image'), sketchController.create);
+router.post('/sketches', auth, (req, res, next) => {
+  console.log('Reached sketch upload route');
+  next();
+}, sketchController.upload.single('image'), (req, res, next) => {
+  console.log('After multer, file:', req.file ? 'exists' : 'missing');
+  next();
+}, sketchController.create);
 router.delete('/sketches/:id', auth, sketchController.delete);
 
 module.exports = router;

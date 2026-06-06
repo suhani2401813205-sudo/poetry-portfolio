@@ -2,41 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Whispered Ink</title>
   <link rel="stylesheet" href="/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-  <div class="nav-brand">
-    <a href="/" class="nav-logo-wrap">
-      <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" /><span class="nav-logo-text">Whispered Ink</span>
-    </a>
-    <span class="nav-tagline">शब्द, रेषा आणि भावना</span>
-  </div>
-  <div class="nav-links">
-    <a href="/poems">Kavita</a>
-    <a href="/sketches">Rekhatan</a>
-    <a href="/about">Parichay</a>
-  </div>
-</nav>
+    <div class="nav-brand">
+      <a href="/" class="nav-logo-wrap">
+        <img src="/images/logo.png" alt="Whispered Ink" class="nav-logo-img" />
+        <span class="nav-logo-text">Whispered Ink</span>
+      </a>
+      <span class="nav-tagline">शब्द, रेषा आणि भावना</span>
+    </div>
+    <div class="nav-links">
+      <a href="/poems">Kavita</a>
+      <a href="/sketches">Rekhatan</a>
+      <a href="/about">Parichay</a>
+    </div>
+  </nav>
 
-  <!-- HERO -->
   <div class="home-hero">
     <div class="home-hero-left">
       <p class="hero-eyebrow">Personal creative portfolio</p>
       <h1 class="hero-h1">Kavita, <em>Kala</em><br>ani Vichar</h1>
-      <p class="hero-p">Marathi & Hindi poetry,
-sketches and quiet thoughts —
-a small world created by Suhani,
-a computer engineering student from Maharashtra.
-.</p>
+      <p class="hero-p">Marathi & Hindi poetry, sketches and quiet thoughts — a small world created by Suhani, a computer engineering student from Maharashtra.</p>
       <div class="hero-pills">
         <span class="pill">मराठी</span>
         <span class="pill">हिन्दी</span>
-        <span class="pill"><%= poems.length %> poems</span>
+        <span class="pill"><%= poemCount %> poems</span>
       </div>
       <div class="hero-cta">
         <a href="/poems" class="btn-primary">Read poems</a>
@@ -57,7 +53,7 @@ a computer engineering student from Maharashtra.
 
       <div class="hero-mini-stats">
         <div class="mini-stat">
-          <span class="ms-num"><%= poems.length %></span>
+          <span class="ms-num"><%= poemCount %></span>
           <span class="ms-label">Poems</span>
         </div>
         <div class="mini-stat">
@@ -72,60 +68,43 @@ a computer engineering student from Maharashtra.
     </div>
   </div>
 
-  <!-- RECENT POEMS -->
   <div class="home-section">
     <div class="section-head">
       <span class="section-title">Recent poems</span>
       <a href="/poems" class="section-more">View all →</a>
     </div>
     <div class="poems-grid">
-      <% poems.slice(0, 3).forEach(poem => { %>
-        <a href="/poems/<%= poem.id %>" class="poem-card">
-          <p class="pc-lang"><%= poem.language %></p>
-          <h3 class="pc-title"><%= poem.title %></h3>
-          <p class="pc-excerpt"><%= poem.body.substring(0, 80) %>...</p>
-          <div class="pc-foot">
-            <span class="pc-tag"><%= poem.mood %></span>
-            <span class="pc-stats">👁 <%= poem.views %> · ❤️ <%= poem.likes %></span>
-          </div>
-        </a>
-      <% }) %>
+      <% if (recentPoems.length === 0) { %>
+        <p style="color:#B07080; font-style:italic;">No poems yet.</p>
+      <% } else { %>
+        <% recentPoems.slice(0, 3).forEach(poem => { %>
+          <a href="/poems/<%= poem.id %>" class="poem-card">
+            <p class="pc-lang"><%= poem.language %></p>
+            <h3 class="pc-title"><%= poem.title %></h3>
+            <p class="pc-excerpt"><%= poem.body.substring(0, 80) %>...</p>
+            <div class="pc-foot">
+              <span class="pc-tag"><%= poem.mood %></span>
+              <span class="pc-stats">👁 <%= poem.views %> · ❤️ <%= poem.likes %></span>
+            </div>
+          </a>
+        <% }) %>
+      <% } %>
     </div>
   </div>
 
-  <!-- ABOUT STRIP -->
   <div class="home-section about-strip">
-    <p class="about-quote">"जे शब्दांत मावत नाही,
-ते रेषांमध्ये उमटतं…
-आणि जे रेषांत हरवतं,
-ते कवितेत सापडतं.
-"</p>
+    <p class="about-quote">"जे शब्दांत मावत नाही, ते रेषांमध्ये उमटतं… आणि जे रेषांत हरवतं, ते कवितेत सापडतं."</p>
     <div class="about-right">
-      <p class="about-line">
-  <i data-lucide="map-pin" class="icon"></i>
-  Maharashtra, India
-</p>
-
-<p class="about-line">
-  <i data-lucide="graduation-cap" class="icon"></i>
-  3rd year, Computer Engineering
-</p>
-
-<p class="about-line">
-  <i data-lucide="pen-tool" class="icon"></i>
-  Writes in Marathi & Hindi
-</p>
+      <p class="about-line">🗺 Maharashtra, India</p>
+      <p class="about-line">🎓 3rd year, Computer Engineering</p>
+      <p class="about-line">✍️ Writes in Marathi & Hindi</p>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <span class="footer-left">Whispered Ink</span>
     <span class="footer-right">शब्द, रेषा आणि भावना</span>
   </footer>
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
+
 </body>
 </html>
