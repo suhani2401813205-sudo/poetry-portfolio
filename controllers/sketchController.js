@@ -34,4 +34,51 @@ exports.show = async (req, res) => {
     res.render('sketches/show', { sketch, comments });
   } catch (err) {
     console.error(err.message);
-    res.status(500).se
+    res.status(500).send('Something went wrong');
+  }
+};
+
+exports.comment = async (req, res) => {
+  try {
+    const { name, message } = req.body;
+    await SketchComment.create({ sketch_id: req.params.id, name, message });
+    res.redirect(`/sketches/${req.params.id}#comments`);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Something went wrong');
+  }
+};
+
+exports.adminIndex = async (req, res) => {
+  try {
+    const sketches = await Sketch.getAll();
+    res.render('admin/sketches', { sketches, admin: req.session.admin });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Something went wrong');
+  }
+};
+
+exports.create = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).send('No file uploaded');
+    }
+    const image_url = '/uploads/' + req.file.filename;
+    await Sketch.create({ ...req.body, image_url });
+    res.redirect('/admin/sketches');
+  } catch (err) {
+    console.error('Upload error:', err.message);
+    res.status(500).send(err.message);
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    await Sketch.delete(req.params.id);
+    res.redirect('/admin/sketches');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Something went wrong');
+  }
+};
